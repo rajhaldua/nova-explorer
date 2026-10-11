@@ -8,6 +8,7 @@ export function usePreferences() {
   const [fontSize, setFontSize] = useState<FontSize>('normal');
   const [theme, setTheme] = useState<ThemeMode>('light');
   const [language, setLanguage] = useState<Language>('en');
+  const [autoStart, setAutoStart] = useState<boolean>(true);
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -47,6 +48,22 @@ export function usePreferences() {
         const storedLang = await tauriApi.getSetting('language');
         if (storedLang && storedLang in translations) {
           setLanguage(storedLang as Language);
+        }
+
+        // Auto-run on startup detection & first-launch auto-enable
+        try {
+          const isAuto = await tauriApi.getAutoStart();
+          const storedAuto = await tauriApi.getSetting('auto_start');
+          if (storedAuto === null) {
+            // First run on user's PC: auto-enable startup autorun
+            await tauriApi.setAutoStart(true);
+            await tauriApi.setSetting('auto_start', 'true');
+            setAutoStart(true);
+          } else {
+            setAutoStart(storedAuto === 'true' || isAuto);
+          }
+        } catch (e) {
+          console.warn('AutoStart check warning:', e);
         }
       } catch (err) {
         console.warn('Could not load preferences from SQLite, using defaults:', err);
@@ -113,6 +130,16 @@ export function usePreferences() {
     tauriApi.setSetting('language', lang).catch(console.error);
   };
 
+  const updateAutoStart = async (enable: boolean) => {
+    setAutoStart(enable);
+    try {
+      await tauriApi.setAutoStart(enable);
+      await tauriApi.setSetting('auto_start', String(enable));
+    } catch (e) {
+      console.error('Failed to update autorun setting:', e);
+    }
+  };
+
   const completeOnboarding = (chosenMode: AppMode, chosenFontSize: FontSize) => {
     setAppMode(chosenMode);
     setFontSize(chosenFontSize);
@@ -120,6 +147,9 @@ export function usePreferences() {
     tauriApi.setSetting('has_onboarded', 'true').catch(console.error);
     tauriApi.setSetting('app_mode', chosenMode).catch(console.error);
     tauriApi.setSetting('font_size', chosenFontSize).catch(console.error);
+    // Ensure startup autorun is locked in on onboarding completion
+    tauriApi.setAutoStart(true).catch(console.error);
+    tauriApi.setSetting('auto_start', 'true').catch(console.error);
   };
 
   const t = translations[language] || translations.en;
@@ -133,6 +163,8 @@ export function usePreferences() {
     updateTheme,
     language,
     updateLanguage,
+    autoStart,
+    updateAutoStart,
     hasCompletedOnboarding,
     completeOnboarding,
     isLoading,

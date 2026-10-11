@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppMode, FontSize, ThemeMode } from '../../types';
-import { Settings, Sparkles, Type, Sun, Moon, Globe, Contrast, BookOpen, Compass, Zap, Check, X } from 'lucide-react';
+import { Settings, Sparkles, Type, Sun, Moon, Globe, Contrast, BookOpen, Compass, Zap, Check, X, Power, ExternalLink } from 'lucide-react';
 import { Language, translations } from '../../i18n';
 
 interface SettingsModalProps {
@@ -14,6 +14,9 @@ interface SettingsModalProps {
   onSelectTheme: (theme: ThemeMode) => void;
   language: Language;
   onSelectLanguage: (lang: Language) => void;
+  autoStart: boolean;
+  onToggleAutoStart: (enable: boolean) => void;
+  onSwitchToExplorer: () => void;
 }
 
 export const SettingsModal: React.FC<SettingsModalProps> = ({
@@ -27,6 +30,9 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   onSelectTheme,
   language,
   onSelectLanguage,
+  autoStart,
+  onToggleAutoStart,
+  onSwitchToExplorer,
 }) => {
   const t = translations[language] || translations.en;
 
@@ -235,6 +241,70 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 {lang.label}
               </button>
             ))}
+          </div>
+        </div>
+
+        {/* Section 5: Windows Startup & System Compatibility */}
+        <div className="flex flex-col gap-2 pt-2 border-t border-slate-200 dark:border-slate-700">
+          <label className="text-base font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+            <Power className="w-5 h-5 text-emerald-500" />
+            Windows Startup & Explorer:
+          </label>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {/* Auto Start Toggle Card */}
+            <button
+              type="button"
+              onClick={() => onToggleAutoStart(!autoStart)}
+              className={`p-3.5 rounded-2xl border-2 flex items-center justify-between gap-3 text-left transition-all cursor-pointer ${
+                autoStart
+                  ? 'border-emerald-600 bg-emerald-50/80 dark:bg-emerald-950/60 text-emerald-950 dark:text-emerald-100 shadow-xs'
+                  : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300'
+              }`}
+            >
+              <div className="flex items-center gap-3 min-w-0">
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
+                  autoStart ? 'bg-emerald-600 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-500'
+                }`}>
+                  <Power className="w-5 h-5" />
+                </div>
+                <div className="min-w-0">
+                  <span className="text-sm font-black block truncate">{t.autoStartOnBoot || 'Auto-run on Windows startup'}</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400 block truncate">
+                    {autoStart ? 'Active: Launches with Windows' : 'Disabled: Manual launch only'}
+                  </span>
+                </div>
+              </div>
+              <span className={`px-2.5 py-1 rounded-full text-xs font-black shrink-0 ${
+                autoStart ? 'bg-emerald-600 text-white' : 'bg-slate-300 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+              }`}>
+                {autoStart ? 'ON' : 'OFF'}
+              </span>
+            </button>
+
+            {/* Switch to Regular Explorer Button Card */}
+            <button
+              type="button"
+              onClick={() => {
+                onClose();
+                onSwitchToExplorer();
+              }}
+              className="p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-blue-400 dark:hover:border-blue-600 text-slate-800 dark:text-slate-200 flex items-center justify-between gap-3 text-left transition-all cursor-pointer group"
+            >
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/80 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <ExternalLink className="w-5 h-5" />
+                </div>
+                <div className="min-w-0">
+                  <span className="text-sm font-black block truncate">{t.switchToExplorer || 'Windows Explorer'}</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400 block truncate">
+                    Open traditional Windows Explorer
+                  </span>
+                </div>
+              </div>
+              <span className="px-2.5 py-1 rounded-full bg-blue-600 text-white text-xs font-black shrink-0">
+                Open
+              </span>
+            </button>
           </div>
         </div>
 

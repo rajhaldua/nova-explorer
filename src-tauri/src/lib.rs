@@ -35,6 +35,9 @@ pub fn run() {
             // Shell commands
             commands::open_path,
             commands::reveal_in_explorer,
+            commands::switch_to_windows_explorer,
+            commands::set_auto_start,
+            commands::get_auto_start,
             // DB commands
             commands::get_setting,
             commands::set_setting,

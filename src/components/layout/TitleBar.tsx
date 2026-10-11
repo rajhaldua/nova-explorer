@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppMode, FontSize, ThemeMode } from '../../types';
-import { FolderHeart, Settings, Sun, Moon, Sparkles, Contrast, BookOpen, Compass, Zap } from 'lucide-react';
+import { FolderHeart, Settings, Sun, Moon, Sparkles, Contrast, BookOpen, Compass, Zap, ExternalLink } from 'lucide-react';
 import { translations, Language } from '../../i18n';
 
 interface TitleBarProps {
@@ -11,6 +11,7 @@ interface TitleBarProps {
   fontSize: FontSize;
   onCycleFontSize: () => void;
   onOpenSettings: () => void;
+  onSwitchToExplorer: () => void;
   language: Language;
 }
 
@@ -22,6 +23,7 @@ export const TitleBar: React.FC<TitleBarProps> = ({
   fontSize,
   onCycleFontSize,
   onOpenSettings,
+  onSwitchToExplorer,
   language,
 }) => {
   const t = translations[language] || translations.en;
@@ -113,6 +115,18 @@ export const TitleBar: React.FC<TitleBarProps> = ({
           aria-label={`Switch color theme (Current: ${getThemeTitle()})`}
         >
           {getThemeIcon()}
+        </button>
+
+        {/* Switch back to regular Windows Explorer */}
+        <button
+          type="button"
+          onClick={onSwitchToExplorer}
+          className="px-3.5 py-1.5 rounded-xl border-2 border-blue-300 dark:border-blue-800 bg-blue-50 dark:bg-blue-950/70 text-blue-900 dark:text-blue-200 hover:bg-blue-100 dark:hover:bg-blue-900 font-bold text-sm flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+          title={t.switchToExplorerTooltip || "Switch back to regular Windows Explorer"}
+          aria-label={t.switchToExplorerTooltip || "Switch back to regular Windows Explorer"}
+        >
+          <ExternalLink className="w-4 h-4 text-blue-600 dark:text-blue-400 stroke-[2.5]" />
+          <span className="hidden sm:inline font-black">{t.switchToExplorer || "Windows Explorer"}</span>
         </button>
 
         {/* Full Settings Modal Trigger */}

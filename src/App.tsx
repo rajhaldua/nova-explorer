@@ -32,6 +32,8 @@ export default function App() {
     updateTheme,
     language,
     updateLanguage,
+    autoStart,
+    updateAutoStart,
     hasCompletedOnboarding,
     completeOnboarding,
   } = usePreferences();
@@ -243,6 +245,16 @@ export default function App() {
       refreshDirectory();
     } catch (err: any) {
       showToast(`Undo: ${err}`, 'info');
+    }
+  };
+
+  // Switch to native Windows Explorer
+  const handleSwitchToExplorer = async () => {
+    try {
+      await tauriApi.switchToWindowsExplorer(currentPath || undefined);
+      showToast('Opened in regular Windows Explorer', 'success');
+    } catch (err: any) {
+      showToast(`Could not open Windows Explorer: ${err}`, 'error');
     }
   };
 
@@ -492,6 +504,7 @@ export default function App() {
         fontSize={fontSize}
         onCycleFontSize={cycleFontSize}
         onOpenSettings={() => setIsSettingsModalOpen(true)}
+        onSwitchToExplorer={handleSwitchToExplorer}
         language={language}
       />
 
@@ -732,6 +745,9 @@ export default function App() {
         onSelectTheme={updateTheme}
         language={language}
         onSelectLanguage={updateLanguage}
+        autoStart={autoStart}
+        onToggleAutoStart={updateAutoStart}
+        onSwitchToExplorer={handleSwitchToExplorer}
       />
 
       {/* Centered Floating QuickLook for Windows Modal */}

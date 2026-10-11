@@ -216,6 +216,25 @@ export const tauriApi = {
     });
   },
 
+  switchToWindowsExplorer: async (folderPath?: string): Promise<void> => {
+    return await callTauri<void>('switch_to_windows_explorer', { folderPath }, () => {
+      console.log('Mock: Switching to Windows Explorer at', folderPath);
+    });
+  },
+
+  setAutoStart: async (enable: boolean): Promise<boolean> => {
+    return await callTauri<boolean>('set_auto_start', { enable }, () => {
+      localStorage.setItem('nova_setting_auto_start', String(enable));
+      return enable;
+    });
+  },
+
+  getAutoStart: async (): Promise<boolean> => {
+    return await callTauri<boolean>('get_auto_start', {}, () => {
+      return localStorage.getItem('nova_setting_auto_start') === 'true';
+    });
+  },
+
   // Settings
   getSetting: async (key: string): Promise<string | null> => {
     return await callTauri<string | null>('get_setting', { key }, () => {
