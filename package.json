@@ -1,7 +1,12 @@
 {
-  "name": "tauri-app",
+  "name": "nova-explorer",
+  "description": "Accessible, high-contrast, senior-friendly file manager for Windows built with Tauri 2 and React 19",
   "private": true,
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rajhaldua/nova-explorer.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
