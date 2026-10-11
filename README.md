@@ -4,6 +4,21 @@
 
 Built with **Tauri v2 + Rust + React 19 + Tailwind CSS v4**.
 
+[![Release](https://img.shields.io/badge/Release-v0.1.0-blue.svg)](https://github.com/rajhaldua/nova-explorer/releases/tag/v0.1.0)
+[![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011-0078D6.svg)](https://github.com/rajhaldua/nova-explorer/releases/tag/v0.1.0)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+---
+
+## 💾 Download Official Windows Installers (v0.1.0)
+
+| Installer Format | File | Size | Recommended For |
+|---|---|---|---|
+| **NSIS Setup (.exe)** | [📥 **NovaExplorer_0.1.0_x64-setup.exe**](https://github.com/rajhaldua/nova-explorer/releases/download/v0.1.0/NovaExplorer_0.1.0_x64-setup.exe) | 2.63 MB | **Recommended for all seniors & home users** (One-click install) |
+| **Windows Package (.msi)** | [📥 **NovaExplorer_0.1.0_x64_en-US.msi**](https://github.com/rajhaldua/nova-explorer/releases/download/v0.1.0/NovaExplorer_0.1.0_x64_en-US.msi) | 3.66 MB | Enterprise, Group Policy, & IT Admin deployment |
+
+👉 **Full Release Notes**: [View on GitHub Releases](https://github.com/rajhaldua/nova-explorer/releases/tag/v0.1.0)
+
 ---
 
 ## 🎯 Why NovaExplorer?
@@ -120,7 +135,7 @@ NovaExplorer/
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/nova-explorer.git
+   git clone https://github.com/rajhaldua/nova-explorer.git
    cd nova-explorer
    ```
 
