@@ -1,0 +1,60 @@
+name: 'Release NovaExplorer'
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [windows-latest]
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build frontend
+        run: npm run build
+
+      - name: Build Tauri Desktop App & Installers
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: 'NovaExplorer ${{ github.ref_name }}'
+          releaseBody: |
+            ## 🌟 NovaExplorer Release ${{ github.ref_name }}
+            
+            Accessible, senior-friendly Windows file manager with:
+            - 6 Eye-friendly and High-Contrast color themes
+            - Windows QuickLook full preview engine
+            - Fixed 64px Action Toolbar with keyboard shortcuts
+            - Safe Delete & Conflict Resolution
+            
+            ### Windows Downloads:
+            - Setup `.exe` (NSIS Installer)
+            - Setup `.msi` (Windows Installer Package)
+          releaseDraft: false
+          prerelease: false

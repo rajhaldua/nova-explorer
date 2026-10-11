@@ -1,0 +1,335 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --font-base: 18px;
+  --control-height: 44px;
+  --bg-app: #f8fafc;
+  --surface: #ffffff;
+  --surface-hover: #f1f5f9;
+  --surface-active: #e2e8f0;
+  --border: #cbd5e1;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-contrast: #ffffff;
+  --danger: #dc2626;
+  --danger-hover: #b91c1c;
+  --success: #16a34a;
+  --warning: #d97706;
+  --focus-ring: #2563eb;
+}
+
+/* 1. Classic Light */
+[data-theme="light"] {
+  --bg-app: #f8fafc;
+  --surface: #ffffff;
+  --surface-hover: #f1f5f9;
+  --surface-active: #e2e8f0;
+  --border: #cbd5e1;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-contrast: #ffffff;
+  --danger: #dc2626;
+  --danger-hover: #b91c1c;
+  --success: #16a34a;
+  --warning: #d97706;
+  --focus-ring: #2563eb;
+}
+
+/* 2. Gentle Dark */
+[data-theme="dark"],
+.dark {
+  --bg-app: #0f172a;
+  --surface: #1e293b;
+  --surface-hover: #334155;
+  --surface-active: #475569;
+  --border: #475569;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --accent-contrast: #ffffff;
+  --danger: #ef4444;
+  --danger-hover: #f87171;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --focus-ring: #60a5fa;
+}
+
+/* 3. Pure White & Black (Monochrome High Contrast for Elderly / Low Vision) */
+[data-theme="black-and-white"] {
+  --bg-app: #ffffff;
+  --surface: #ffffff;
+  --surface-hover: #f4f4f4;
+  --surface-active: #000000;
+  --border: #000000;
+  --text-main: #000000;
+  --text-muted: #111111;
+  --accent: #000000;
+  --accent-hover: #222222;
+  --accent-contrast: #ffffff;
+  --danger: #000000;
+  --danger-hover: #222222;
+  --success: #000000;
+  --warning: #000000;
+  --focus-ring: #000000;
+}
+
+[data-theme="black-and-white"] aside,
+[data-theme="black-and-white"] header,
+[data-theme="black-and-white"] footer,
+[data-theme="black-and-white"] nav,
+[data-theme="black-and-white"] main {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+[data-theme="black-and-white"] button {
+  border-color: #000000 !important;
+}
+
+[data-theme="black-and-white"] .text-slate-900,
+[data-theme="black-and-white"] .text-slate-800,
+[data-theme="black-and-white"] .text-slate-700,
+[data-theme="black-and-white"] .text-slate-600,
+[data-theme="black-and-white"] .text-slate-500,
+[data-theme="black-and-white"] .text-slate-400,
+[data-theme="black-and-white"] .dark\:text-slate-100,
+[data-theme="black-and-white"] .dark\:text-slate-200,
+[data-theme="black-and-white"] .dark\:text-slate-300,
+[data-theme="black-and-white"] .dark\:text-slate-400 {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="black-and-white"] .bg-slate-100,
+[data-theme="black-and-white"] .bg-slate-50,
+[data-theme="black-and-white"] .bg-white,
+[data-theme="black-and-white"] .dark\:bg-slate-950,
+[data-theme="black-and-white"] .dark\:bg-slate-900,
+[data-theme="black-and-white"] .dark\:bg-slate-800 {
+  background-color: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+[data-theme="black-and-white"] .border-slate-200,
+[data-theme="black-and-white"] .border-slate-300,
+[data-theme="black-and-white"] .border-slate-700,
+[data-theme="black-and-white"] .border-slate-800,
+[data-theme="black-and-white"] .dark\:border-slate-800,
+[data-theme="black-and-white"] .dark\:border-slate-700 {
+  border-color: #000000 !important;
+}
+
+[data-theme="black-and-white"] .bg-blue-600,
+[data-theme="black-and-white"] .bg-blue-500 {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="black-and-white"] svg {
+  color: #000000 !important;
+}
+
+[data-theme="black-and-white"] .bg-blue-600 svg,
+[data-theme="black-and-white"] .bg-black svg,
+[data-theme="black-and-white"] [aria-selected="true"] svg,
+[data-theme="black-and-white"] .text-white svg {
+  color: #ffffff !important;
+}
+
+/* 4. Paper Warmth (Warm Amber / Sepia / Eye-Relief for Long Reading) */
+[data-theme="warm-amber"] {
+  --bg-app: #faf5ea;
+  --surface: #fffdf9;
+  --surface-hover: #f3ebd7;
+  --surface-active: #e8dcbf;
+  --border: #d4bfa1;
+  --text-main: #2c1a0e;
+  --text-muted: #5e4632;
+  --accent: #b45309;
+  --accent-hover: #92400e;
+  --accent-contrast: #ffffff;
+  --danger: #b91c1c;
+  --danger-hover: #991b1b;
+  --success: #15803d;
+  --warning: #b45309;
+  --focus-ring: #b45309;
+}
+
+[data-theme="warm-amber"] body,
+[data-theme="warm-amber"] #root,
+[data-theme="warm-amber"] .bg-slate-100 {
+  background-color: #faf5ea !important;
+  color: #2c1a0e !important;
+}
+
+[data-theme="warm-amber"] .bg-white,
+[data-theme="warm-amber"] .bg-slate-50 {
+  background-color: #fffdf9 !important;
+  color: #2c1a0e !important;
+  border-color: #d4bfa1 !important;
+}
+
+[data-theme="warm-amber"] .text-slate-900,
+[data-theme="warm-amber"] .text-slate-800,
+[data-theme="warm-amber"] .text-slate-700 {
+  color: #2c1a0e !important;
+}
+
+[data-theme="warm-amber"] .text-slate-600,
+[data-theme="warm-amber"] .text-slate-500 {
+  color: #5e4632 !important;
+}
+
+[data-theme="warm-amber"] .border-slate-200,
+[data-theme="warm-amber"] .border-slate-300 {
+  border-color: #d4bfa1 !important;
+}
+
+[data-theme="warm-amber"] .bg-blue-600 {
+  background-color: #b45309 !important;
+}
+
+/* 5. Nordic Ocean Blue (Calm High-Contrast Blue) */
+[data-theme="cool-ocean"] {
+  --bg-app: #081320;
+  --surface: #0e2034;
+  --surface-hover: #152d48;
+  --surface-active: #1d3d60;
+  --border: #254a72;
+  --text-main: #f0f9ff;
+  --text-muted: #93c5fd;
+  --accent: #0284c7;
+  --accent-hover: #38bdf8;
+  --accent-contrast: #ffffff;
+  --danger: #f43f5e;
+  --danger-hover: #fb7185;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --focus-ring: #38bdf8;
+}
+
+[data-theme="cool-ocean"] body,
+[data-theme="cool-ocean"] #root,
+[data-theme="cool-ocean"] .dark\:bg-slate-950,
+[data-theme="cool-ocean"] .dark\:bg-slate-900,
+[data-theme="cool-ocean"] .bg-slate-100 {
+  background-color: #081320 !important;
+  color: #f0f9ff !important;
+}
+
+[data-theme="cool-ocean"] .dark\:bg-slate-800,
+[data-theme="cool-ocean"] .dark\:bg-slate-700,
+[data-theme="cool-ocean"] .bg-white,
+[data-theme="cool-ocean"] .bg-slate-50 {
+  background-color: #0e2034 !important;
+  border-color: #254a72 !important;
+  color: #f0f9ff !important;
+}
+
+[data-theme="cool-ocean"] .dark\:text-slate-100,
+[data-theme="cool-ocean"] .dark\:text-slate-200,
+[data-theme="cool-ocean"] .text-slate-900,
+[data-theme="cool-ocean"] .text-slate-800 {
+  color: #f0f9ff !important;
+}
+
+[data-theme="cool-ocean"] .dark\:text-slate-400,
+[data-theme="cool-ocean"] .text-slate-600,
+[data-theme="cool-ocean"] .text-slate-500 {
+  color: #93c5fd !important;
+}
+
+[data-theme="cool-ocean"] .dark\:border-slate-800,
+[data-theme="cool-ocean"] .dark\:border-slate-700,
+[data-theme="cool-ocean"] .border-slate-200 {
+  border-color: #254a72 !important;
+}
+
+[data-theme="cool-ocean"] .text-black {
+  color: #f0f9ff !important;
+}
+
+/* 6. High Contrast Vibrant Yellow & Black */
+[data-theme="high-contrast"],
+[data-contrast="high"] {
+  --bg-app: #000000;
+  --surface: #000000;
+  --surface-hover: #1a1a1a;
+  --surface-active: #333333;
+  --border: #ffff00;
+  --text-main: #ffff00;
+  --text-muted: #ffffff;
+  --accent: #ffff00;
+  --accent-hover: #ffea00;
+  --accent-contrast: #000000;
+  --danger: #ff4d4d;
+  --danger-hover: #ff6666;
+  --success: #00ff66;
+  --warning: #ffaa00;
+  --focus-ring: #ffff00;
+}
+
+[data-theme="high-contrast"] .text-black,
+[data-contrast="high"] .text-black {
+  color: #ffff00 !important;
+}
+
+[data-theme="high-contrast"] button,
+[data-contrast="high"] button {
+  border-color: #ffff00 !important;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: var(--font-base);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Focus styles for keyboard accessibility */
+*:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Accessible scrollbars */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-hover);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 6px;
+  border: 2px solid var(--surface-hover);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
