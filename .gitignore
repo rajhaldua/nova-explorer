@@ -13,6 +13,11 @@ dist/
 dist-ssr/
 *.local
 
+# Standalone installers & binaries (distributed via GitHub Releases)
+installers/
+*.exe
+*.msi
+
 # Rust & Tauri builds
 target/
 src-tauri/target/
