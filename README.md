@@ -17,6 +17,8 @@ Modern file managers are cluttered with small 12px fonts, dozens of nested menus
 - **Windows QuickLook Engine**: Instant spacebar preview for PDFs, AI, EPS, PSD, Audio, Video, Photos, Text, and Code.
 - **Accidental Deletion & Conflict Protection**: Two-step confirmations with Recycle Bin safeguards and 1-click Undo.
 - **Dual Operating Modes**: Switch effortlessly between **Simple Mode** (card-first) and **Advanced Mode** (tabs, detailed metadata, drive monitors).
+- **Automatic Startup (Auto-run)**: Automatically registers in Windows startup upon install so seniors have it ready whenever their PC boots, with a simple toggle in Settings.
+- **1-Click Switch to Windows Explorer**: Dedicated `[🗂️ Windows Explorer]` button in the title bar allowing users or caregivers to seamlessly launch the regular Windows Explorer at the current folder anytime.
 
 ---
 
